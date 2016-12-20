@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.totvs.classificados.R;
+import com.totvs.classificados.model.AdItem;
 
 /**
  * Created by Totvs on 20/12/2016.
@@ -23,7 +24,8 @@ public class DetailActivity extends BaseActivity {
 
         Intent intent = getIntent();
         if (intent != null) {
-            mTvTitle.setText(intent.getStringExtra("TITLE_KEY"));
+            AdItem item = (AdItem) intent.getSerializableExtra("AD_KEY");
+            mTvTitle.setText(item.getDetail());
         }
     }
 }

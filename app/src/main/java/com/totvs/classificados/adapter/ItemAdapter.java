@@ -53,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
         AdItem item = mItems.get(position);
         holder.tvTitle.setText(item.getTitle());
         holder.tvDetail.setText(item.getDetail());
-        holder.ivImage.setBackgroundResource(R.mipmap.ic_launcher);
+        holder.ivImage.setImageResource(R.mipmap.ic_launcher);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

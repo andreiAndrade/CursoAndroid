@@ -13,9 +13,9 @@ public class AdItem implements Serializable{
     private String mDetail;
 
     public AdItem(String url, String title, String detail) {
-        this.mUrl = mUrl;
-        this.mTitle = mTitle;
-        this.mDetail = mDetail;
+        this.mUrl = url;
+        this.mTitle = title;
+        this.mDetail = detail;
     }
 
     public String getUrl() {
