@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Classified</string>
-    <string name="btn_more">More</string>
+    <string name="btn_filter">Filter</string>
+    <string name="tv_category">Category</string>
 </resources>

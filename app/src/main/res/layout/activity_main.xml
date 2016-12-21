@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/et_name"
@@ -16,19 +17,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.totvs.classificados.view.LinearRecyclerView
+        <LinearLayout
+            android:id="@+id/container_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rv_list"
-            android:paddingBottom="50dp"
-            android:clipToPadding="false"/>
+            android:layout_height="match_parent">
+
+            <com.totvs.classificados.view.LinearRecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="40dp"
+                />
+
+        </LinearLayout>
 
         <Button
-            android:text="@string/btn_more"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="loadMore"
-            android:layout_alignBottom="@id/rv_list"/>
+            android:layout_alignBottom="@id/container_recycler_view"
+            android:onClick="chosenFilter"
+            android:text="@string/btn_filter" />
 
     </RelativeLayout>
 </LinearLayout>

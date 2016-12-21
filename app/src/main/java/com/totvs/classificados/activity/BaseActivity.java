@@ -1,6 +1,7 @@
 package com.totvs.classificados.activity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -58,5 +59,9 @@ public class BaseActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         Log.d(TAG, "onBackPressed " + TAG);
+    }
+
+    public SharedPreferences getPrefs() {
+        return getSharedPreferences("com.totvs.classificados", MODE_PRIVATE);
     }
 }
