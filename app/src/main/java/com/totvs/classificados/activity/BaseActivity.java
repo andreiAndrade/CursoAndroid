@@ -3,13 +3,14 @@ package com.totvs.classificados.activity;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 /**
  * Created by Totvs on 20/12/2016.
  */
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 
     final String TAG = this.getClass().getSimpleName();
 

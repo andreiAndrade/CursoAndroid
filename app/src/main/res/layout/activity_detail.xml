@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <fragment
+        class="com.totvs.classificados.fragment.MyChronometerFragment"
+        android:id="@+id/chronometerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
