@@ -25,6 +25,7 @@ public class FilterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
+
         mSnCategory = (Spinner) findViewById(R.id.sn_category);
 
         mCategories = new ArrayList<>();

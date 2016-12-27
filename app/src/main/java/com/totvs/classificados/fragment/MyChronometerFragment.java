@@ -1,6 +1,7 @@
 package com.totvs.classificados.fragment;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 
+import com.totvs.classificados.App;
 import com.totvs.classificados.R;
 
 /**
@@ -27,10 +29,28 @@ public class MyChronometerFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        mChronometer.start();
+//    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Long currentTime = App.getApp(getActivity()).getCurrentTime();
+        mChronometer.setBase(currentTime + SystemClock.elapsedRealtime());
         mChronometer.start();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        App.getApp(getActivity())
+                .setCurrentTime(mChronometer.getBase() - SystemClock.elapsedRealtime());
     }
 }

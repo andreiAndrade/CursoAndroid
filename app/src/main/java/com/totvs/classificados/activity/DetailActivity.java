@@ -26,6 +26,7 @@ public class DetailActivity extends BaseActivity {
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mTvDetail = (TextView) findViewById(R.id.tv_detail);
         mIvImage = (ImageView) findViewById(R.id.iv_image);
+        createToolbar("Activity Detail");
 
 
         Intent intent = getIntent();
@@ -35,6 +36,8 @@ public class DetailActivity extends BaseActivity {
             mTvTitle.setText(item.getTitle());
             mTvDetail.setText(item.getDetail());
             mIvImage.setImageResource(R.mipmap.ic_launcher);
+
+            this.toolbar.setTitle(item.getTitle());
         }
     }
 }

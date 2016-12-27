@@ -2,4 +2,16 @@
     <string name="app_name">Classified</string>
     <string name="btn_filter">Filter</string>
     <string name="tv_category">Category</string>
+    <string name="item_one">Item 1</string>
+    <string name="item_two">Item 2</string>
+    <string name="item_notification">Notification Center</string>
+    <string name="item_toast">Toast</string>
+    <string name="item_snackbar">SnackBar</string>
+    <string name="title_dialog">Title</string>
+    <string name="message_dialog">Saved data successful!</string>
+    <string name="ok">OK</string>
+    <string name="title_notification">Title</string>
+    <string name="message_notification">You have a new voice message</string>
+    <string name="item_browser">Open Browser</string>
+    <string name="item_call">Make Call</string>
 </resources>

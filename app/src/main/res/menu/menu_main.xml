@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_toast"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/item_toast"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/item_snackbar"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/item_snackbar"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/item_notification"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/item_notification"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/item_browser"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/item_browser"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/item_call"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/item_call"
+        app:showAsAction="never"
+        />
+
+</menu>

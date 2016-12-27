@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar_dropdown"/>
+
     <fragment
         class="com.totvs.classificados.fragment.MyChronometerFragment"
         android:id="@+id/chronometerContainer"
