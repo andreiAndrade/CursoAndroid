@@ -35,4 +35,14 @@
         app:showAsAction="never"
         />
 
+    <item
+        android:id="@+id/item_request_sms_permission"
+        android:title="@string/item_request_sms_permission"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/item_start_service"
+        android:title="@string/item_start_service"
+        app:showAsAction="never"/>
+
 </menu>

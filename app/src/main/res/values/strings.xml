@@ -14,4 +14,8 @@
     <string name="message_notification">You have a new voice message</string>
     <string name="item_browser">Open Browser</string>
     <string name="item_call">Make Call</string>
+    <string name="enable_permission_on_settings">Enable call phone permission on settigns.</string>
+    <string name="item_request_sms_permission">Request Sms Permission</string>
+    <string name="sms_enabled">Sms enabled</string>
+    <string name="item_start_service">Start Service</string>
 </resources>

@@ -14,4 +14,8 @@
     <string name="message_notification">Você tem uma nova mensagem de voz</string>
     <string name="item_browser">Abrir Browser</string>
     <string name="item_call">Ligar</string>
+    <string name="enable_permission_on_settings">Ative a permissão de ligação nas configurações.</string>
+    <string name="item_request_sms_permission">Solicitar Permissão de Sms</string>
+    <string name="sms_enabled">Sms Ativo</string>
+    <string name="item_start_service">Iniciar Service</string>
 </resources>
