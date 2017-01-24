@@ -20,6 +20,6 @@ public class LinearRecyclerView extends RecyclerView {
 
         setLayoutManager(new LinearLayoutManager(context));
 
-        setBackground(ContextCompat.getDrawable(context, android.R.drawable.dialog_holo_light_frame));
+//        setBackground(ContextCompat.getDrawable(context, android.R.drawable.dialog_holo_light_frame));
     }
 }

@@ -18,4 +18,6 @@
     <string name="item_request_sms_permission">Solicitar Permissão de Sms</string>
     <string name="sms_enabled">Sms Ativo</string>
     <string name="item_start_service">Iniciar Service</string>
+    <string name="preparing_data">Preparando dados…</string>
+    <string name="progress" formatted="false">Carregando %d%%…</string>
 </resources>

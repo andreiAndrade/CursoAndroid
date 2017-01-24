@@ -1,6 +1,7 @@
 package com.totvs.classificados.activity;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -30,10 +32,13 @@ import com.totvs.classificados.R;
 import com.totvs.classificados.adapter.ItemAdapter;
 import com.totvs.classificados.model.AdItem;
 import com.totvs.classificados.model.Category;
+import com.totvs.classificados.receiver.AlarmBroadcastReceiver;
 import com.totvs.classificados.service.ToastService;
+import com.totvs.classificados.task.LoadDateTask;
 import com.totvs.classificados.view.LinearRecyclerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,9 +49,11 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     public static final int REQUEST_CHOSEN_FILTER_CODE = 1;
-    private LinearRecyclerView mRvList;
     public static final int REQUEST_CALL_PERMISSION = 0;
     public static final int REQUEST_SMS_PERMISSION = 1;
+    private LinearRecyclerView mRvList;
+    private View mContainerProgress;
+    private TextView mTvProgress;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -68,16 +75,16 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mRvList = (LinearRecyclerView) findViewById(R.id.rv_list);
+        mContainerProgress = findViewById(R.id.container_progress);
+        mTvProgress= (TextView) findViewById(R.id.tv_progress);
 
         List<AdItem> items = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            AdItem item = new AdItem(null, String.valueOf(i), String.format("Item description %s", i));
-            items.add(item);
-        }
-
         ItemAdapter itemAdapter = new ItemAdapter(items, this);
         mRvList.setAdapter(itemAdapter);
+
+        LoadDateTask task =
+                new LoadDateTask(items, itemAdapter, mContainerProgress, mTvProgress, mRvList);
+        task.execute();
 
         App.getApp(this).setCurrentTime(0L);
 
@@ -90,9 +97,25 @@ public class MainActivity extends BaseActivity {
 
         category.setAdapter(
                 new ArrayAdapter<>(getSupportActionBar().getThemedContext(), android.R.layout.simple_spinner_dropdown_item, categories));
+
+        makeAlarm();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void makeAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 21);
+//        calendar.set(Calendar.MINUTE, 30);
+
+        alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 60000, pendingIntent);
+
     }
 
     public void chosenFilter(View v) {

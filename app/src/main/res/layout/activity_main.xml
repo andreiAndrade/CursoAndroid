@@ -12,15 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,12 +21,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.totvs.classificados.view.LinearRecyclerView
-                android:id="@+id/rv_list"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="40dp"
-                />
+                android:layout_height="match_parent">
+
+                <com.totvs.classificados.view.LinearRecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="40dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/container_progress"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_progress"
+                        android:text="@string/preparing_data"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 

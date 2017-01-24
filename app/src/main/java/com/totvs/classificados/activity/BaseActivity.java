@@ -1,15 +1,22 @@
 package com.totvs.classificados.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.totvs.classificados.R;
+import com.totvs.classificados.service.ToastService;
 
 /**
  * Created by Totvs on 20/12/2016.
@@ -20,6 +27,14 @@ public class BaseActivity extends AppCompatActivity {
     final String TAG = this.getClass().getSimpleName();
 
     protected Toolbar toolbar;
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String message = intent.getStringExtra(ToastService.MSG_KEY);
+            Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+    };
 
 //    protected AppCompatSpinner spinner;
 
@@ -53,6 +68,9 @@ public class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause " + TAG);
+
+        LocalBroadcastManager.getInstance(this)
+                .unregisterReceiver(mReceiver);
     }
 
     @Override
@@ -71,6 +89,9 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume " + TAG);
+
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mReceiver, new IntentFilter(ToastService.MSG_FITLER));
     }
 
     @Override
