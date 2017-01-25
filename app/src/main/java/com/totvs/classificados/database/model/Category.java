@@ -1,4 +1,4 @@
-package com.totvs.classificados.model;
+package com.totvs.classificados.database.model;
 
 import java.io.Serializable;
 

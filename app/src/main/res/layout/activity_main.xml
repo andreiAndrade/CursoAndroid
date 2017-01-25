@@ -12,56 +12,62 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/container_recycler_view"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <FrameLayout
+            <LinearLayout
+                android:id="@+id/container_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.totvs.classificados.view.LinearRecyclerView
-                    android:id="@+id/rv_list"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="40dp"
-                    />
+                    android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/container_progress"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ProgressBar
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/tv_progress"
-                        android:text="@string/preparing_data"
-                        android:gravity="center"
+                    <com.totvs.classificados.view.LinearRecyclerView
+                        android:id="@+id/rv_list"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="40dp"
+                        />
 
-                </LinearLayout>
-            </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/container_progress"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-        </LinearLayout>
+                        <ProgressBar
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/container_recycler_view"
-            android:onClick="chosenFilter"
-            android:text="@string/btn_filter" />
+                        <TextView
+                            android:id="@+id/tv_progress"
+                            android:text="@string/preparing_data"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:onClick="addItem"
+            android:src="@drawable/ic_add"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_gravity="bottom|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

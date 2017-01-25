@@ -20,4 +20,8 @@
     <string name="item_start_service">Iniciar Service</string>
     <string name="preparing_data">Preparando dados…</string>
     <string name="progress" formatted="false">Carregando %d%%…</string>
+    <string name="hint_title">Título</string>
+    <string name="hint_description">Descrição</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Deletar</string>
 </resources>

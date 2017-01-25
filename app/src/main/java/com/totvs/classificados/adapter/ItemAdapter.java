@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.totvs.classificados.R;
 import com.totvs.classificados.activity.DetailActivity;
-import com.totvs.classificados.model.AdItem;
+import com.totvs.classificados.database.model.AdItem;
 
 import java.util.List;
 

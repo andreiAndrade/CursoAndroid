@@ -6,11 +6,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.totvs.classificados.R;
-import com.totvs.classificados.model.Category;
+import com.totvs.classificados.database.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Totvs on 21/12/2016.

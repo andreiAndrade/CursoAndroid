@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="lineSeparetorColor">#dcdcdc</color>
+    <color name="back_image">#dcdcdc</color>
 
 </resources>

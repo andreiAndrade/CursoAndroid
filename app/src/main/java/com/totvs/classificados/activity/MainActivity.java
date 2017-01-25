@@ -23,15 +23,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.totvs.classificados.App;
 import com.totvs.classificados.R;
 import com.totvs.classificados.adapter.ItemAdapter;
-import com.totvs.classificados.model.AdItem;
-import com.totvs.classificados.model.Category;
+import com.totvs.classificados.database.model.AdItem;
+import com.totvs.classificados.database.model.Category;
 import com.totvs.classificados.receiver.AlarmBroadcastReceiver;
 import com.totvs.classificados.service.ToastService;
 import com.totvs.classificados.task.LoadDateTask;
@@ -54,6 +51,8 @@ public class MainActivity extends BaseActivity {
     private LinearRecyclerView mRvList;
     private View mContainerProgress;
     private TextView mTvProgress;
+    private List<AdItem> mItems;
+    private ItemAdapter mItemAdapter;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -78,13 +77,11 @@ public class MainActivity extends BaseActivity {
         mContainerProgress = findViewById(R.id.container_progress);
         mTvProgress= (TextView) findViewById(R.id.tv_progress);
 
-        List<AdItem> items = new ArrayList<>();
-        ItemAdapter itemAdapter = new ItemAdapter(items, this);
-        mRvList.setAdapter(itemAdapter);
+        mItems = new ArrayList<>();
+        mItemAdapter = new ItemAdapter(mItems, this);
+        mRvList.setAdapter(mItemAdapter);
 
-        LoadDateTask task =
-                new LoadDateTask(items, itemAdapter, mContainerProgress, mTvProgress, mRvList);
-        task.execute();
+        loadData();
 
         App.getApp(this).setCurrentTime(0L);
 
@@ -131,7 +128,8 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_toast:
-                Toast.makeText(this, "Item 1", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Item 1", Toast.LENGTH_LONG).show();
+                chosenFilter(null);
                 break;
             case R.id.item_snackbar:
                 Snackbar snackbar = Snackbar.make(toolbar, "Item 2", Snackbar.LENGTH_INDEFINITE);
@@ -277,5 +275,23 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        mItems.clear();
+        loadData();
+    }
+
+    private void loadData() {
+        LoadDateTask task =
+                new LoadDateTask(this, mItems, mItemAdapter, mContainerProgress, mTvProgress, mRvList);
+        task.execute();
+    }
+
+    public void addItem(View view) {
+        startActivity(new Intent(this, FormActivity.class));
     }
 }

@@ -22,8 +22,8 @@
         </activity>
 
         <activity android:name=".activity.DetailActivity"/>
-        <activity android:name=".activity.FilterActivity"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+
+        <activity android:name=".activity.FormActivity"/>
 
         <receiver android:name=".receiver.SMSBroadcastReceiver">
             <intent-filter>
