@@ -24,4 +24,8 @@
     <string name="hint_description">Descrição</string>
     <string name="edit">Editar</string>
     <string name="delete">Deletar</string>
+    <string name="new_item">Novo Item</string>
+    <string name="local_tab_title">LOCAL</string>
+    <string name="server_tab_title">SERVER</string>
+    <string name="saving">Salvando</string>
 </resources>

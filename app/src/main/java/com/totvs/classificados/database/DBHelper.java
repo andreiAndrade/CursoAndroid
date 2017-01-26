@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "shop.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,6 +29,11 @@ public class DBHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(
                     "ALTER TABLE " + MyStore.AdItemTable.TABLE_NAME +
                     " ADD COLUMN " + MyStore.AdItemTable.PRICE + " TEXT DEFAULT 0");
+        }
+        if(oldVersion == 2) {
+            sqLiteDatabase.execSQL(
+                    "ALTER TABLE " + MyStore.AdItemTable.TABLE_NAME +
+                    " ADD COLUMN " + MyStore.AdItemTable.IMAGE + " TEXT DEFAULT ''");
         }
 
     }

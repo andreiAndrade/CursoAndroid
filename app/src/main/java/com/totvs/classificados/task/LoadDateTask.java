@@ -55,7 +55,6 @@ public class LoadDateTask extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         int qtdItems = 50;
-        sleep(2000);
 
         DBHelper dbHelper = App.getApp(mActivity).getDbHelper();
         SQLiteDatabase db = dbHelper.getReadableDatabase();

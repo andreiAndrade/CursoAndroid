@@ -1,7 +1,13 @@
 package com.totvs.classificados.database.model;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import com.totvs.classificados.App;
+import com.totvs.classificados.activity.FormActivity;
+import com.totvs.classificados.database.DBHelper;
 import com.totvs.classificados.database.MyStore;
 
 import java.io.Serializable;
@@ -17,6 +23,7 @@ public class AdItem implements Serializable{
     private String mUrl;
     private String mTitle;
     private String mDetail;
+    private String mImage;
     private BigDecimal mPrice;
 
     private String mGuid;
@@ -32,6 +39,7 @@ public class AdItem implements Serializable{
         this.mGuid = cursor.getString(cursor.getColumnIndex(MyStore.AdItemTable.GUID));
         this.mTitle = cursor.getString(cursor.getColumnIndex(MyStore.AdItemTable.TITLE));
         this.mDetail = cursor.getString(cursor.getColumnIndex(MyStore.AdItemTable.DESCRIPTION));
+        this.mImage = cursor.getString(cursor.getColumnIndex(MyStore.AdItemTable.IMAGE));
 
         String price = cursor.getString(cursor.getColumnIndex(MyStore.AdItemTable.PRICE));
         mPrice = price != null ? new BigDecimal(price) : BigDecimal.ZERO;
@@ -71,5 +79,27 @@ public class AdItem implements Serializable{
 
     public void setPrice(BigDecimal mPrice) {
         this.mPrice = mPrice;
+    }
+
+    public String getImage() {
+        return mImage;
+    }
+
+    public void setImage(String mImage) {
+        this.mImage = mImage;
+    }
+
+    public static AdItem getByGuid(FormActivity formActivity, String itemGuid) {
+        DBHelper db = App.getApp(formActivity).getDbHelper();
+        SQLiteDatabase readableDatabase = db.getReadableDatabase();
+
+        try (Cursor cursor = readableDatabase.query(MyStore.AdItemTable.TABLE_NAME, null,
+                MyStore.AdItemTable.GUID + "= ?", new String[]{itemGuid}, null, null, null, "1")) {
+            if (cursor.moveToFirst()) {
+                return new AdItem(cursor);
+            }
+        }
+
+        return null;
     }
 }

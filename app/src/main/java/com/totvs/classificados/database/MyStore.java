@@ -19,6 +19,7 @@ public abstract class MyStore {
         public static final String TITLE = "title";
         public static final String DESCRIPTION = "description";
         public static final String PRICE = "price";
+        public static final String IMAGE = "image";
 
 
         public static final String CREATE_TABLE =
@@ -26,6 +27,7 @@ public abstract class MyStore {
                         + GUID + " TEXT PRIMARY KEY,"
                         + TITLE + " TEXT,"
                         + DESCRIPTION + " TEXT,"
+                        + IMAGE + " TEXT,"
                         + PRICE + " TEXT"
                         + ")";
     }

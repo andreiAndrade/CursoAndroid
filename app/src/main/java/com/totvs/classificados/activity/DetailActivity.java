@@ -1,13 +1,18 @@
 package com.totvs.classificados.activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.totvs.classificados.App;
 import com.totvs.classificados.R;
+import com.totvs.classificados.database.DBHelper;
+import com.totvs.classificados.database.MyStore;
 import com.totvs.classificados.database.model.AdItem;
 
 /**
@@ -38,7 +43,12 @@ public class DetailActivity extends BaseActivity {
 
             mTvTitle.setText(item.getTitle());
             mTvDetail.setText(item.getDetail());
-            mIvImage.setImageResource(R.mipmap.ic_launcher);
+
+            if (item.getImage() != null && !item.getImage().isEmpty()) {
+                mIvImage.setImageBitmap(BitmapFactory.decodeFile(item.getImage()));
+            } else {
+                mIvImage.setImageResource(R.mipmap.ic_launcher);
+            }
 
             this.toolbar.setTitle(item.getTitle());
         }
@@ -60,7 +70,13 @@ public class DetailActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.action_delete:
+                DBHelper dbHelper = App.getApp(this).getDbHelper();
+                SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
 
+                writableDatabase.delete(MyStore.AdItemTable.TABLE_NAME,
+                        MyStore.AdItemTable.GUID + " = ?", new String[]{this.item.getGuid()});
+
+                finish();
                 break;
         }
 

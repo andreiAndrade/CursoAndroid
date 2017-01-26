@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
@@ -27,8 +29,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.totvs.classificados.App;
 import com.totvs.classificados.R;
 import com.totvs.classificados.adapter.ItemAdapter;
+import com.totvs.classificados.adapter.TabAdapter;
 import com.totvs.classificados.database.model.AdItem;
 import com.totvs.classificados.database.model.Category;
+import com.totvs.classificados.fragment.ListFragment;
 import com.totvs.classificados.receiver.AlarmBroadcastReceiver;
 import com.totvs.classificados.service.ToastService;
 import com.totvs.classificados.task.LoadDateTask;
@@ -48,20 +52,10 @@ public class MainActivity extends BaseActivity {
     public static final int REQUEST_CHOSEN_FILTER_CODE = 1;
     public static final int REQUEST_CALL_PERMISSION = 0;
     public static final int REQUEST_SMS_PERMISSION = 1;
-    private LinearRecyclerView mRvList;
-    private View mContainerProgress;
-    private TextView mTvProgress;
-    private List<AdItem> mItems;
-    private ItemAdapter mItemAdapter;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-    //private String mVar; //nomenclatura para privados
-    //public String var; //nomenclatura para publico
-    //public static String sVar; //nomenclatura para static
-    //public final String VAR = ""; //nomenclatura para final
+
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private TabAdapter mTabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +67,6 @@ public class MainActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mRvList = (LinearRecyclerView) findViewById(R.id.rv_list);
-        mContainerProgress = findViewById(R.id.container_progress);
-        mTvProgress= (TextView) findViewById(R.id.tv_progress);
-
-        mItems = new ArrayList<>();
-        mItemAdapter = new ItemAdapter(mItems, this);
-        mRvList.setAdapter(mItemAdapter);
-
-        loadData();
 
         App.getApp(this).setCurrentTime(0L);
 
@@ -96,6 +81,26 @@ public class MainActivity extends BaseActivity {
                 new ArrayAdapter<>(getSupportActionBar().getThemedContext(), android.R.layout.simple_spinner_dropdown_item, categories));
 
         makeAlarm();
+
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        mTabAdapter = new TabAdapter(getSupportFragmentManager());
+
+        ListFragment local = new ListFragment();
+        Bundle localBundle = new Bundle();
+        localBundle.putBoolean(ListFragment.IS_LOCAL, true);
+        local.setArguments(localBundle);
+        mTabAdapter.add(getString(R.string.local_tab_title), local);
+
+        ListFragment server = new ListFragment();
+        Bundle serverBudle = new Bundle();
+        serverBudle.putBoolean(ListFragment.IS_LOCAL, false);
+        server.setArguments(serverBudle);
+        mTabAdapter.add(getString(R.string.server_tab_title), server);
+
+        mViewPager.setAdapter(mTabAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     private void makeAlarm() {
@@ -263,7 +268,7 @@ public class MainActivity extends BaseActivity {
 
         if (requestCode == REQUEST_CHOSEN_FILTER_CODE) {
             Category category = (Category) data.getSerializableExtra("CATEGORY_KEY");
-            Snackbar.make(mRvList, category.toString(), Snackbar.LENGTH_LONG).show();
+            Snackbar.make(toolbar, category.toString(), Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -281,17 +286,10 @@ public class MainActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
 
-        mItems.clear();
         loadData();
     }
 
     private void loadData() {
-        LoadDateTask task =
-                new LoadDateTask(this, mItems, mItemAdapter, mContainerProgress, mTvProgress, mRvList);
-        task.execute();
-    }
 
-    public void addItem(View view) {
-        startActivity(new Intent(this, FormActivity.class));
     }
 }
