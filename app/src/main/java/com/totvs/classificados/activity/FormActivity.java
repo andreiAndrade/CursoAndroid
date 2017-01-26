@@ -146,5 +146,6 @@ public class FormActivity extends BaseActivity {
 
     private void saveServerData(String title, String description) {
         ProgressDialog progress = ProgressDialog.show(this, null, getString(R.string.saving));
+        progress.setCancelable(true);
     }
 }
