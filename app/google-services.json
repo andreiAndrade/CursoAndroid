@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "812328294514",
+    "firebase_url": "https://api-project-812328294514.firebaseio.com",
+    "project_id": "api-project-812328294514",
+    "storage_bucket": "api-project-812328294514.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812328294514:android:e5abadbef583ee7f",
+        "android_client_info": {
+          "package_name": "br.com.bematech.bemacash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812328294514-feprbj2l0cgs0ega9r65ve1tluckbk26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_cLzZm_VmN4U3-zMFLiK_VJVGte9u-RA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812328294514:android:7a73776d78bc2e34",
+        "android_client_info": {
+          "package_name": "com.busata.classificados"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812328294514-feprbj2l0cgs0ega9r65ve1tluckbk26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_cLzZm_VmN4U3-zMFLiK_VJVGte9u-RA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

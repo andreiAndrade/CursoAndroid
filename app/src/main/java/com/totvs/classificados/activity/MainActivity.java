@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -290,6 +291,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadData() {
-
+        for (Fragment fragment : mTabAdapter.getFragments()) {
+            ((ListFragment)fragment).loadData();
+        }
     }
 }

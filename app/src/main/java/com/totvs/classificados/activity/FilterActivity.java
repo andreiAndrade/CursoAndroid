@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.totvs.classificados.R;
 import com.totvs.classificados.database.model.Category;
 
@@ -44,6 +50,44 @@ public class FilterActivity extends BaseActivity {
                 }
             }
         }
+
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(final GoogleMap googleMap) {
+
+                LatLng latLng = new LatLng(-30.060373, -51.173824);
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng).title("Porto Alegre");
+                googleMap.addMarker(markerOptions);
+
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                LatLng latLng = new LatLng(-28.126280, -48.641599);
+                                MarkerOptions markerOptions = new MarkerOptions()
+                                        .position(latLng).title("Praia do Rosa");
+                                googleMap.addMarker(markerOptions);
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
     }
 
     @Override

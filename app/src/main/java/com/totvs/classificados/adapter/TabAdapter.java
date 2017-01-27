@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.totvs.classificados.fragment.ListFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,10 @@ public class TabAdapter extends FragmentPagerAdapter {
         super(fm);
         mTitles = new ArrayList<>();
         mFragments = new ArrayList<>();
+    }
+
+    public List<Fragment> getFragments() {
+        return mFragments;
     }
 
     @Override
